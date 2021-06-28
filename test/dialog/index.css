@@ -1,0 +1,65 @@
+[hidden] {
+	display: none !important;
+}
+
+button {
+	font-size: 20px;
+}
+
+[role="dialog"] {
+	position: fixed;
+		top: 50%;
+		left: 50%;
+		z-index: 10;
+	display: flex;
+		flex-direction: column;
+	width: 800px;
+	height: 600px;
+	background-color: white;
+	transform: translate(-50%, -50%);
+}
+
+[data-dialog-event="close"] {
+	position: absolute;
+		top: 0;
+		right: 0;
+	width: 64px;
+	height: 64px;
+	border: none;
+	padding: 0;
+	background-color: transparent;
+	font-size: 64px;
+	line-height: 1;
+}
+
+[data-dialog-event="close"]:hover {
+	background-color: lightgrey;
+}
+
+[class*="dialog-"] {
+	padding: 16px;
+}
+
+.dialog-content {
+	flex-grow: 1;
+}
+
+.dialog-footer {
+	display: flex;
+		justify-content: flex-end;
+}
+
+[data-dialog-event="confirm"] {
+	margin-left: 16px;
+}
+
+.overlay {
+	position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 5;
+	width: 100vw;
+	height: 100vh;
+	background-color: black;
+	opacity: 0.5;
+}

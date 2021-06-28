@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>test</title>
+	<link rel="stylesheet" href="./index.css">
+</head>
+<body>
+	<button aria-controls="dialog">Open Dialog</button>
+	<button aria-controls="dialog2">Open Dialog2</button>
+	<div id="dialog" role="dialog" aria-modal="true" hidden>
+		<button data-dialog-event="close">&times;</button>
+		<div class="dialog-content">
+			This is a dialog
+		</div>
+		<div class="dialog-footer">
+			<button data-dialog-event="cancel">cancel</button>
+			<button data-dialog-event="confirm">confirm</button>
+		</div>
+	</div>
+	<div id="dialog2" role="dialog" aria-modal="true" hidden>
+		<div class="dialog-content">
+			This is a dialog2
+		</div>
+		<div class="dialog-footer">
+			<button data-dialog-event="cancel">cancel</button>
+			<button data-dialog-event="confirm">confirm</button>
+		</div>
+	</div>
+	<div class="overlay" hidden></div>
+	<script type="module" src="./index.js"></script>
+</body>
+</html>
