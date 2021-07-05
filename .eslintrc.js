@@ -3,13 +3,13 @@ module.exports = {
 		browser: true,
 		es6: true,
 	},
-	extends: ['airbnb-typescript', 'prettier/@typescript-eslint'],
+	extends: ['airbnb-typescript', 'plugin:prettier/recommended'],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		project: 'tsconfig.json',
 		sourceType: 'module',
 	},
-	plugins: ['@typescript-eslint', 'prefer-arrow', 'prettier'],
+	plugins: ['@typescript-eslint', 'prefer-arrow'],
 	rules: {
 		'@typescript-eslint/no-unused-expressions': 0,
 		'arrow-body-style': ['error', 'as-needed'],
@@ -42,6 +42,6 @@ module.exports = {
 		'no-template-curly-in-string': 0,
 		'object-curly-newline': 0,
 		'operator-linebreak': 0,
-		'prettier/prettier': 'off',
+		'space-before-function-paren': ['error', 'always'],
 	},
 }

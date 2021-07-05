@@ -1,5 +1,5 @@
 {
-	"arrowParens":"avoid",
+	"arrowParens": "avoid",
 	"bracketSpacing": true,
 	"endOfLine": "lf",
 	"parser": "typescript",
@@ -7,5 +7,6 @@
 	"singleQuote": true,
 	"tabWidth": 2,
 	"trailingComma": "es5",
-	"useTabs": true
+	"useTabs": true,
+	"printWidth": 120
 }
