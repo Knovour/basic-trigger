@@ -1,18 +1,21 @@
 import aria from '../utils/aria'
 
-type DefaultStatus = 'show' | 'hide'
+type Event = 'dialog:show' | 'dialog:close'
 
-function overlayHandler(isLocked, hideDialog, $overlay) {
-	return (status: DefaultStatus) => {
+type Status = 'show' | 'close'
+type OverlayClass = string | '.overlay'
+
+function overlayInit($dialog, isLocked, overlay: OverlayClass, cb) {
+	const $overlay = $dialog.querySelector(overlay) || document.querySelector(overlay)
+
+	return (status: Status) => {
 		if (!$overlay) return
 
-		$overlay.hidden = status === 'hide'
+		$overlay.hidden = status === 'close'
 
 		if (isLocked) return
 
-		status === 'show'
-			? $overlay.addEventListener('click', hideDialog)
-			: $overlay.removeEventListener('click', hideDialog)
+		status === 'show' ? $overlay.addEventListener('click', cb) : $overlay.removeEventListener('click', cb)
 	}
 }
 
@@ -27,54 +30,54 @@ function generateClassList(classList) {
 	}
 }
 
-function dialogHandler($dialog, hideDialog, classes) {
+function dial($dialog, closeDialog, classes) {
 	const toggleClasses = {
 		show: generateClassList(classes?.show),
-		hide: generateClassList(classes?.hide),
+		close: generateClassList(classes?.close),
 	}
 
-	return (status: DefaultStatus) => {
-		$dialog.hidden = status === 'hide'
-		$dialog.dispatchEvent(new CustomEvent(status))
+	return (status: Status) => {
+		$dialog.hidden = status === 'close'
+		$dialog.dispatchEvent(new CustomEvent(`dialog:${status}`))
 
 		if (status === 'show') {
-			$dialog.addEventListener('click', hideDialog)
-			$dialog.classList.remove(...toggleClasses.hide)
+			$dialog.addEventListener('click', closeDialog)
+			$dialog.classList.remove(...toggleClasses.close)
 			$dialog.classList.add(...toggleClasses.show)
 		} else {
-			$dialog.removeEventListener('click', hideDialog)
+			$dialog.removeEventListener('click', closeDialog)
 			$dialog.classList.remove(...toggleClasses.show)
-			$dialog.classList.add(...toggleClasses.hide)
+			$dialog.classList.add(...toggleClasses.close)
 		}
 	}
 }
 
 function dispatchCloseEvent($dialog, cb) {
-	$dialog.dispatchEvent(new CustomEvent('close'))
+	$dialog.dispatchEvent(new CustomEvent('dialog:close'))
 	cb()
 }
 
-function dispatchCustomEvent($dialog, hideDialog) {
+function dispatchCustomEvent($dialog, closeDialog) {
 	return ({ target }) => {
 		const { dialogEvent } = target.dataset
 		if (!dialogEvent) return
 
 		const eventDetail = {
 			detail: {
-				dialog: { hide: hideDialog },
+				dialog: { close: closeDialog },
 			},
 		}
 
 		dialogEvent === 'close'
-			? dispatchCloseEvent($dialog, hideDialog)
-			: $dialog.dispatchEvent(new CustomEvent(dialogEvent, eventDetail))
+			? dispatchCloseEvent($dialog, closeDialog)
+			: $dialog.dispatchEvent(new CustomEvent(`dialog:${dialogEvent}`, eventDetail))
 	}
 }
 
-function detectEsc($dialog, isLocked, hideDialog) {
-	const escCheck = ({ key }) => key === 'Escape' && dispatchCloseEvent($dialog, hideDialog)
+function detectEsc($dialog, isLocked, closeDialog) {
+	const escCheck = ({ key }) => key === 'Escape' && dispatchCloseEvent($dialog, closeDialog)
 
-	return (status: DefaultStatus) => {
+	return (status: Status) => {
 		if (isLocked) return
 
 		status === 'show'
@@ -86,22 +89,25 @@ function detectEsc($dialog, isLocked, hideDialog) {
 type Options = {
 	classes?: {
 		show?: string | string[]
-		hide?: string | string[]
+		close?: string | string[]
 	}
-	overlay?: HTMLElement
+	locked?: false | true // Disable ESC and overlay click event when true
+	overlay?: OverlayClass
 }
 
-export default ($dialog, { classes = {}, overlay }: Options) => {
+export default ($dialog, { classes = {}, locked, overlay = '.overlay' }: Options) => {
 	if (!$dialog) throw new Error('Dialog not found.')
 
-	let showDialog, hideDialog
+	let showDialog, closeDialog
 
-	const hasCloseBtn = $dialog.querySelector('[data-dialog-event="close"]') !== null
+	// const dialog = {
+	// 	show,
+	// }
 
-	const toggleDialog = dialogHandler($dialog, dispatchCustomEvent($dialog, hideDialog), classes)
+	const toggleDialog = dial($dialog, dispatchCustomEvent($dialog, closeDialog), classes)
 
-	const toggleOverlay = overlayHandler(!hasCloseBtn, hideDialog, overlay)
-	const toggleListenEsc = detectEsc($dialog, hasCloseBtn, hideDialog)
+	const toggleOverlay = overlayInit($dialog, locked, overlay, closeDialog)
+	const toggleListenEsc = detectEsc($dialog, locked, closeDialog)
 
 	const handler = status => {
 		toggleDialog(status)
@@ -110,7 +116,7 @@ export default ($dialog, { classes = {}, overlay }: Options) => {
 	}
 
 	showDialog = () => handler('show')
-	hideDialog = () => handler('hide')
+	closeDialog = () => handler('close')
 
 	aria()
 		.findAll('controls', $dialog.id)
@@ -118,6 +124,6 @@ export default ($dialog, { classes = {}, overlay }: Options) => {
 
 	return {
 		show: showDialog,
-		hide: hideDialog,
+		close: closeDialog,
 	}
 }
