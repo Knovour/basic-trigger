@@ -39,8 +39,7 @@ type Options = {
 	overlay?: OverlayClass
 }
 
-export default (id, { classes = {}, locked, overlay = 'overlay' }: Options) => {
-	const $dialog = document.getElementById(id)
+export default ($dialog, { classes = {}, locked, overlay = 'overlay' }: Options) => {
 	if (!$dialog) throw new Error('Dialog not found.')
 
 	const $overlay = $dialog.querySelector(`.${overlay}`) || document.querySelector(`.${overlay}`)
