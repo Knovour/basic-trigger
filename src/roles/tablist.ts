@@ -1,16 +1,26 @@
 import role from '../utils/role'
 import aria from '../utils/aria'
 
-const switchTabpanel = ($tab, isHidden) =>
-	aria($tab)
-		.toggle('selected')
-		.controlTarget()
-		.hidden = isHidden
+function switchTabpanel($tab, isHidden) {
+	aria($tab).toggle('selected').controlTarget().hidden = isHidden
+}
 
+function dispatchTabEvent($tablist, detail) {
+	$tablist.dispatchEvent(new CustomEvent('tab:selected', { detail }))
+}
 
 export default $tablist => {
-	role($tablist).delegate('tab', 'selected', ($prevTab, $nextTab) => {
+	$tablist.addEventListener('click', ({ target }) => {
+		if (role(target).name !== 'tab' || aria(target).is('selected')) return
+
+		const $prevTab = aria($tablist).find('selected', true)
+
 		switchTabpanel($prevTab, true)
-		switchTabpanel($nextTab, false)
+		switchTabpanel(target, false)
+
+		dispatchTabEvent($tablist, {
+			$tab: target,
+			$panel: aria(target).controlTarget(),
+		})
 	})
 }

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "develop": "rollup -c rollup.config.js -w"
+    "develop": "rollup -c rollup.config.js -w",
+    "build": "rollup -c rollup.config.js"
   },
   "author": "Knovour",
   "license": "MIT",

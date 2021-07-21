@@ -19,7 +19,7 @@ button {
 	transform: translate(-50%, -50%);
 }
 
-[data-dialog-event="close"] {
+.close {
 	position: absolute;
 		top: 0;
 		right: 0;
@@ -32,7 +32,7 @@ button {
 	line-height: 1;
 }
 
-[data-dialog-event="close"]:hover {
+.close:hover {
 	background-color: lightgrey;
 }
 

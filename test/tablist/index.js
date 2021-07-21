@@ -1,3 +1,6 @@
 import bindTablist from '../../tablist.js'
 
-bindTablist(document.querySelector('[role=tablist]'))
+const $tablist = document.querySelector('[role=tablist]')
+bindTablist($tablist)
+
+$tablist.addEventListener('tab:selected', ({ detail }) => console.log(detail))

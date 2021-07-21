@@ -5,20 +5,20 @@ import resolve from '@rollup/plugin-node-resolve'
 
 export default {
 	input: {
-		// index: 'src/index.ts',
 		dialog: 'src/roles/dialog',
-		tablist: 'src/roles/tablist'
+		tablist: 'src/roles/tablist',
+		button: 'src/roles/button',
 	},
 	output: {
-    format: 'es',
-		dir: 'dist'
-  },
+		format: 'es',
+		dir: 'dist',
+	},
 	plugins: [
-    serve({ contentBase: ['dist', 'test'] }),
+		serve({ contentBase: ['dist', 'test'] }),
 		livereload(),
 		resolve({
-			extensions: ['.js', '.ts']
+			extensions: ['.js', '.ts'],
 		}),
 		rollupTypescript(),
-  ]
+	],
 }
