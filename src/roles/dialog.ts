@@ -1,3 +1,5 @@
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+
 import aria from '../utils/aria'
 
 type Status = 'show' | 'close'
@@ -55,6 +57,8 @@ export default ($dialog, options: Options = {}) => {
 
 				toggleHidden($dialog, value)
 				toggleHidden($overlay, value)
+
+				value === 'show' ? disableBodyScroll($dialog) : enableBodyScroll($dialog)
 
 				toggleDialogClass($dialog, value, fmtClasses)
 				dispatchDialogEvent($dialog, value)
