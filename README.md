@@ -18,7 +18,13 @@ Some html toggle event implementation.
 #### Custom Events
 ```js
 const $dialog = document.querySelector('dialog')
-$dialog.addEventListener('dialog:YOUR_DATA_DIALOG_EVENT', () => {})
+$dialog.addEventListener('dialog:show', () => {
+	console.info('This will trigger when dialog appear')
+})
+
+$dialog.addEventListener('dialog:CUSTOM_NAME', () => {
+	console.info('data-dialog-event will be your CUSTOM_NAME, except close')
+})
 ```
 
 ### Tablist
