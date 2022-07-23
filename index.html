@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+	<main class="container">
+		<section class="section">
+			<h3 class="title is-3">Dialog</h3>
+			<button class="button is-primary" aria-controls="dialog">open dialog</button>
+			<dialog id="dialog" class="modal" data-active-class="is-active">
+				<div class="modal-card">
+					<header class="modal-card-head">
+						<p class="modal-card-title">Dialog</p>
+						<button class="delete" aria-label="close" data-dialog-event="close"></button>
+					</header>
+					<section class="modal-card-body">
+						<span class="dialog-event"></span>
+					</section>
+					<footer class="modal-card-foot">
+						<button class="button" data-dialog-event="reset">reset</button>
+						<button class="button is-primary" data-dialog-event="confirm">confirm</button>
+					</footer>
+				</div>
+			</dialog>
+		</section>
+		<section class="section">
+			<h3 class="title is-3">Tablist</h3>
+			<div class="tabs is-toggle is-fullwidth" role="tablist" data-active-class="is-active">
+				<ul>
+					<li class="is-active" role="tab" aria-controls="firstPanel" aria-selected="true"><a>first tab</a></li>
+					<li role="tab" aria-controls="secondPanel"><a>second tab</a></li>
+					<li role="tab" aria-controls="thirdPanel"><a>third tab</a></li>
+				</ul>
+			</div>
+			<div id="firstPanel" class="panel is-info" role="tabpanel"><p class="panel-heading">first panel</p></div>
+			<div id="secondPanel" class="panel is-success" role="tabpanel" hidden><p class="panel-heading">second panel</p></div>
+			<div id="thirdPanel" class="panel is-danger" role="tabpanel" hidden><p class="panel-heading">third panel</p></div>
+		</section>
+		<section class="section">
+			<h3 class="title is-3">Press Button</h3>
+			<button class="button is-light" data-active-class="is-primary" data-unactive-class="is-light" aria-pressed="false">button</button>
+		</section>
+		<section class="section">
+			<h3 class="title is-3">Checklist</h3>
+			<div class="field">
+				<div class="control">
+					<output class="input is-primary is-small checklist-output"></output>
+				</div>
+			</div>
+			<div class="field" role="checklist">
+				<div class="control">
+					<label for="checkbox1" class="checkbox">
+						<input type="checkbox" id="checkbox1" value="1">
+						checkbox 1
+					</label>
+				</div>
+				<div class="control">
+					<label for="checkbox2" class="checkbox">
+						<input type="checkbox" id="checkbox2" value="2">
+						checkbox 2
+					</label>
+				</div>
+				<div class="control">
+					<label for="checkbox3" class="checkbox">
+						<input type="checkbox" id="checkbox3" value="3">
+						checkbox 3
+					</label>
+				</div>
+				<div class="control">
+					<label for="checkbox4" class="checkbox">
+						<input type="checkbox" id="checkbox4" value="4">
+						checkbox 4
+					</label>
+				</div>
+				<div class="control">
+					<label for="checkbox5" class="checkbox">
+						<input type="checkbox" id="checkbox5" value="5">
+						checkbox 5
+					</label>
+				</div>
+			</div>
+		</section>
+	</main>
+	<script type="module" src="/example.js"></script>
+</body>
+</html>

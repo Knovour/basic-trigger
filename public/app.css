@@ -1,0 +1,9 @@
+[role=tab] > a {
+	pointer-events: none;
+}
+
+dialog {
+	border: none;
+		border-radius: 6px;
+	padding: 0;
+}

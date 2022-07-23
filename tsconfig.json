@@ -17,6 +17,6 @@
 		"baseUrl": ".",
     "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "ESNext"]
 	},
-	"include": ["src/**/*", "utils/**/*"],
+	"include": ["src/**/*", "utils/**/*", "**/*.js"],
   "exclude": ["dist/**/*", "node_modules"]
 }
