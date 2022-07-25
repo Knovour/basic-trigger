@@ -1,5 +1,3 @@
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
-
 import { toggleActiveClasses, send, bindOnload } from './utils'
 import aria from './utils/aria'
 
@@ -24,7 +22,6 @@ function bind($dialog: HTMLDialogElement) {
 				$dialog.showModal()
 				toggleActiveClasses($dialog, unactiveClass, activeClass)
 				send($dialog, customEvent.show)
-				disableBodyScroll($dialog)
 			})
 		)
 
@@ -38,10 +35,7 @@ function bind($dialog: HTMLDialogElement) {
 	})
 
 	defaultEvent.forEach(eventName =>
-		$dialog.addEventListener(eventName, () => {
-			toggleActiveClasses($dialog, activeClass, unactiveClass)
-			enableBodyScroll($dialog)
-		})
+		$dialog.addEventListener(eventName, () => toggleActiveClasses($dialog, activeClass, unactiveClass))
 	)
 }
 

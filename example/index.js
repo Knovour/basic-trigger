@@ -1,7 +1,4 @@
-import '/src/pressButton'
-import '/src/dialog'
-import '/src/tablist'
-import '/src/checklist'
+import '/lib'
 
 // Dialog
 const $dialog = document.querySelector('dialog')
