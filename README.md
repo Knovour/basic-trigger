@@ -2,7 +2,7 @@
 
 Some html toggle event implementation.
 
-### Dialog
+## Dialog
 #### Basic structure
 ```html
 <button aria-controls="dialog">open dialog</button>
@@ -17,6 +17,8 @@ Some html toggle event implementation.
 
 #### Custom Events
 ```js
+import 'basic-trigger' // or 'basic-trigger/dist/dialog'
+
 const $dialog = document.querySelector('dialog')
 $dialog.addEventListener('dialog:show', () => {
 	console.info('This will trigger when dialog appear')
@@ -27,7 +29,7 @@ $dialog.addEventListener('dialog:CUSTOM_NAME', () => {
 })
 ```
 
-### Tablist
+## Tablist
 Basic structure
 ```html
 <!-- data classes will toogle in tab role -->
@@ -44,13 +46,15 @@ Basic structure
 
 #### Custom Events
 ```js
+import 'basic-trigger' // or 'basic-trigger/dist/tablist'
+
 const $tablist = document.querySelector('[role=tablist]')
 $tablist.addEventListener('tab:selected', ({ detail }) => {
 	const { $tab, $panel } = detail
 })
 ```
 
-### Press Button
+## Press Button
 Basic structure
 ```html
 <button aria-pressed="false" data-active-class="optional" data-unactive-class="optional">button</button>
@@ -58,12 +62,14 @@ Basic structure
 
 #### Custom Events
 ```js
+import 'basic-trigger' // or 'basic-trigger/dist/pressButton'
+
 const $btn = document.querySelector('button')
 $btn.addEventListener('btn:pressed', () => {})
 $btn.addEventListener('btn:unpressed', () => {})
 ```
 
-### Checklist
+## Checklist
 Basic structure
 ```html
 <!-- This is custom role -->
@@ -93,6 +99,8 @@ Basic structure
 
 #### Custom Events
 ```js
+import 'basic-trigger' // or 'basic-trigger/dist/checklist'
+
 const $checklist = document.querySelector('[role=checklist]')
 $checklist.addEventListener('checklist:change', ({ detail }) => {
 	const { value, checked } = detail
