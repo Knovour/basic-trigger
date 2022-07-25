@@ -16,9 +16,10 @@ function bind($dialog) {
     send($dialog, customEvent.show);
   }));
   $dialog.addEventListener("click", (e) => {
-    if (isBackdropClicked($dialog, e))
+    const $target = e.target;
+    if ($target.tagName === "DIALOG" && isBackdropClicked($dialog, e))
       return $dialog.close();
-    const { dialogEvent } = e.target.dataset;
+    const { dialogEvent } = $target.dataset;
     if (!dialogEvent)
       return;
     dialogEvent === "close" ? $dialog.close() : send($dialog, `dialog:${dialogEvent}`);
