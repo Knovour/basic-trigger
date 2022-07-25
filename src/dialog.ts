@@ -26,9 +26,10 @@ function bind($dialog: HTMLDialogElement) {
 		)
 
 	$dialog.addEventListener('click', e => {
-		if (isBackdropClicked($dialog, e)) return $dialog.close()
+		const $target = e.target as HTMLElement
+		if ($target.tagName === 'DIALOG' && isBackdropClicked($dialog, e)) return $dialog.close()
 
-		const { dialogEvent } = (e.target as HTMLElement).dataset
+		const { dialogEvent } = $target.dataset
 		if (!dialogEvent) return
 
 		dialogEvent === 'close' ? $dialog.close() : send($dialog, `dialog:${dialogEvent}`)
