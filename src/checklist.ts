@@ -1,10 +1,10 @@
-import { send, bindOnload } from './utils'
+import { send } from './utils'
 
 const customEvent = {
 	change: 'checklist:change',
 }
 
-function bind($checklist: HTMLElement) {
+export function bind($checklist: HTMLElement) {
 	$checklist.addEventListener('click', ({ target }) => {
 		if ((target as HTMLInputElement).type !== 'checkbox') return
 
@@ -12,5 +12,3 @@ function bind($checklist: HTMLElement) {
 		send($checklist, customEvent.change, { value, checked })
 	})
 }
-
-bindOnload('[role="checklist"]', bind)

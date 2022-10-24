@@ -1,4 +1,6 @@
-import '/lib'
+import { bindAll } from '../src'
+
+bindAll()
 
 // Dialog
 const $dialog = document.querySelector('dialog')

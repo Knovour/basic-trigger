@@ -1,4 +1,4 @@
-import { toggleActiveClasses, send, bindOnload } from './utils'
+import { toggleActiveClasses, send } from './utils'
 import aria from './utils/aria'
 
 const customEvent = {
@@ -6,7 +6,7 @@ const customEvent = {
 	unpressed: 'btn:unpressed',
 }
 
-function bind($btn: HTMLButtonElement) {
+export function bind($btn: HTMLButtonElement) {
 	$btn.addEventListener('click', () => {
 		const $ariaBtn = aria($btn)
 
@@ -20,5 +20,3 @@ function bind($btn: HTMLButtonElement) {
 		send($btn, nextPressedStatus ? customEvent.pressed : customEvent.unpressed)
 	})
 }
-
-bindOnload('[aria-pressed]', bind)

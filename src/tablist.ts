@@ -1,4 +1,4 @@
-import { toggleActiveClasses, send, bindOnload } from './utils'
+import { toggleActiveClasses, send } from './utils'
 import role from './utils/role'
 import aria from './utils/aria'
 
@@ -10,7 +10,7 @@ const customEvent = {
 	selected: 'tab:selected',
 }
 
-function bind($tablist) {
+export function bind($tablist) {
 	$tablist.addEventListener('click', ({ target }) => {
 		if (role(target).name !== 'tab' || aria(target).is('selected')) return
 
@@ -28,5 +28,3 @@ function bind($tablist) {
 		})
 	})
 }
-
-bindOnload('[role="tablist"]', bind)

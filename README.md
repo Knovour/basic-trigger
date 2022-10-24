@@ -2,6 +2,13 @@
 
 Some html toggle event implementation.
 
+**Bind all elements**
+```js
+import { bindAll } 'basic-trigger'
+
+bindAll()
+```
+
 ## Dialog
 #### Basic structure
 ```html
@@ -17,8 +24,9 @@ Some html toggle event implementation.
 
 #### Custom Events
 ```js
-import 'basic-trigger' // or 'basic-trigger/dist/dialog'
+import { bind } 'basic-trigger'
 
+bind('dialog')
 const $dialog = document.querySelector('dialog')
 $dialog.addEventListener('dialog:show', () => {
 	console.info('This will trigger when dialog appear')
@@ -46,8 +54,9 @@ Basic structure
 
 #### Custom Events
 ```js
-import 'basic-trigger' // or 'basic-trigger/dist/tablist'
+import { bind } from 'basic-trigger'
 
+bind('tablist')
 const $tablist = document.querySelector('[role=tablist]')
 $tablist.addEventListener('tab:selected', ({ detail }) => {
 	const { $tab, $panel } = detail
@@ -62,8 +71,9 @@ Basic structure
 
 #### Custom Events
 ```js
-import 'basic-trigger' // or 'basic-trigger/dist/pressButton'
+import { bind } from 'basic-trigger'
 
+bind('pressButton')
 const $btn = document.querySelector('button')
 $btn.addEventListener('btn:pressed', () => {})
 $btn.addEventListener('btn:unpressed', () => {})
@@ -99,8 +109,9 @@ Basic structure
 
 #### Custom Events
 ```js
-import 'basic-trigger' // or 'basic-trigger/dist/checklist'
+import { bind } from 'basic-trigger'
 
+bind('checklist')
 const $checklist = document.querySelector('[role=checklist]')
 $checklist.addEventListener('checklist:change', ({ detail }) => {
 	const { value, checked } = detail
