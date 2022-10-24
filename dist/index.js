@@ -1,4 +1,3 @@
-import { bindOnload } from "./utils/index.js";
 import { bind as bind$1 } from "./checklist.js";
 import { bind as bind$2 } from "./dialog.js";
 import { bind as bind$3 } from "./pressButton.js";
@@ -12,8 +11,8 @@ const targets = {
 function bind(key) {
   if (!(key in targets))
     return;
-  const [selector, bindElem] = targets[key];
-  bindOnload(selector, bindElem);
+  const [selector, bindFn] = targets[key];
+  document.querySelectorAll(selector).forEach(bindFn);
 }
 function bindAll() {
   Object.keys(targets).forEach(bind);

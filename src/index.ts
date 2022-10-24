@@ -1,5 +1,3 @@
-import { bindOnload } from './utils'
-
 import * as checklist from './checklist'
 import * as dialog from './dialog'
 import * as pressButton from './pressButton'
@@ -15,8 +13,8 @@ const targets = {
 function bind(key) {
 	if (!(key in targets)) return
 
-	const [selector, bindElem] = targets[key]
-	bindOnload(selector, bindElem)
+	const [selector, bindFn] = targets[key]
+	document.querySelectorAll(selector).forEach(bindFn)
 }
 
 function bindAll() {

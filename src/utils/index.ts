@@ -7,7 +7,3 @@ export function send($target: HTMLElement, eventName: string, detail?: any) {
 	const eventDetail = detail ? new CustomEvent(eventName, { detail }) : new CustomEvent(eventName)
 	$target.dispatchEvent(eventDetail)
 }
-
-export function bindOnload(query: string, bindFn: ($target: HTMLElement) => void) {
-	window.addEventListener('load', () => document.querySelectorAll(query).forEach(bindFn))
-}
