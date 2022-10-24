@@ -16,7 +16,6 @@ function bind(key) {
 	if (!(key in targets)) return
 
 	const [selector, bindElem] = targets[key]
-	console.log(selector, bindElem)
 	bindOnload(selector, bindElem)
 }
 
