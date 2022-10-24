@@ -1,4 +1,4 @@
-import { bindOnload, send } from "./utils/index.js";
+import { send } from "./utils/index.js";
 const customEvent = {
   change: "checklist:change"
 };
@@ -10,4 +10,6 @@ function bind($checklist) {
     send($checklist, customEvent.change, { value, checked });
   });
 }
-bindOnload('[role="checklist"]', bind);
+export {
+  bind
+};

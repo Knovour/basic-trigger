@@ -1,4 +1,4 @@
-import { bindOnload, toggleActiveClasses, send } from "./utils/index.js";
+import { toggleActiveClasses, send } from "./utils/index.js";
 import role from "./utils/role.js";
 import aria from "./utils/aria.js";
 function switchTabpanel($tab, isHidden) {
@@ -22,4 +22,6 @@ function bind($tablist) {
     });
   });
 }
-bindOnload('[role="tablist"]', bind);
+export {
+  bind
+};

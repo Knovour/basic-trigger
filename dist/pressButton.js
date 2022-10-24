@@ -1,4 +1,4 @@
-import { bindOnload, toggleActiveClasses, send } from "./utils/index.js";
+import { toggleActiveClasses, send } from "./utils/index.js";
 import aria from "./utils/aria.js";
 const customEvent = {
   pressed: "btn:pressed",
@@ -13,4 +13,6 @@ function bind($btn) {
     send($btn, nextPressedStatus ? customEvent.pressed : customEvent.unpressed);
   });
 }
-bindOnload("[aria-pressed]", bind);
+export {
+  bind
+};
